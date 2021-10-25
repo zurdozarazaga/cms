@@ -18,12 +18,12 @@
   color: white;
   display: grid;
   position: relative;
-  height: 50%;
-  width: 50%;
+  height: 40%;
+  width: 40%;
   grid-template-areas: 
-    'title title'
-    'email social-media'
-    'email register';
+    'title '
+    'email '
+    'email ';
 }
 
 .login_container--title  {
@@ -34,8 +34,10 @@
 .login__container--form {
   grid-area: email;
   text-align: center;
+  align-items: center;
   margin: 0 5%; 
 }
+
 
 .login__container--form > input {
   display: block;

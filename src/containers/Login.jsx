@@ -23,16 +23,19 @@ const Login = () => (
           <a href='/'>Olvidé mi contraseña</a>
         </div>
       </form>
-      <section className='login__container--social-media'>
+      
+      {/* Section media login */}
+
+      {/* <section className='login__container--social-media'>
         <div className='login__container--google'>
           <span className='login__container--logo'>
-            {/* <FontAwesomeIcon icon={faGoogle} /> */}
+            { <FontAwesomeIcon icon={faGoogle} /> }
           </span>
           <span className='login__container--google-parrafo'>Iniciar sesion con Google</span>
         </div>
         <div className='login__container--facebook'>
           <span className='login__container--logo'>
-            {/* <FontAwesomeIcon icon={faFacebook} /> */}
+            {<FontAwesomeIcon icon={faFacebook} /> }
           </span>
           <span className='login__container--facebook-parrafo'>Iniciar sesion con Facebook</span>
         </div>
@@ -44,7 +47,7 @@ const Login = () => (
             Regístrate
           </a>
         </div>
-      </section>
+      </section> */}
     </section>
   </section>
 
