@@ -1,16 +1,26 @@
 import React from 'react';
 import '../assets/styles/containers/Login.scss';
 
+import { URL_LOGIN } from '../util/constants';
+
 import { useForm } from "react-hook-form";
+
+import post from '../services/post';
 
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faGoogle, faFacebook } from '@fortawesome/free-brands-svg-icons';
 
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
+
+  const handlePost = (data) => {
+    post(URL_LOGIN, data);
+
+  }
   const onSubmit = (data, e) => {
     console.log(data)
     e.target.reset();
+    handlePost(data);
   };
 
   return (
@@ -24,8 +34,8 @@ const Login = () => {
             className='input'
             type='text'
             placeholder='usuario'
-            name='user'
-            {...register( 'user', {
+            name='nick'
+            {...register( 'nick', {
               required: {
                 value: true,
                 message: 'Usuario obligatorio'
@@ -33,14 +43,14 @@ const Login = () => {
             })}
           />
           <span className="text-danger text-small d-block mb-2">
-            {errors.user &&  errors.user.message}
+            {errors.nick &&  errors.nick.message}
           </span>
           <input
            className='input'
            type='password'
             placeholder='Contraseña'
-            name='password'
-            {...register( 'password', {
+            name='pass'
+            {...register( 'pass', {
               required: {
                 value: true,
                 message: 'Contraseña obligatoria'
@@ -49,7 +59,7 @@ const Login = () => {
 
           />
           <span className="text-danger text-small d-block mb-2">
-            {errors.password &&  errors.password.message}
+            {errors.pass &&  errors.pass.message}
           </span>
           <button className='button' type='submit'>
             Iniciar sesión 
