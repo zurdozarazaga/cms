@@ -1,8 +1,6 @@
 import '../util/constants';
 
 const post = async (URL_LOGIN, data) => {
-  console.log(URL_LOGIN);
-  console.log(data);
   try{
     const response = await fetch(URL_LOGIN, {
       method: 'POST',
@@ -14,7 +12,7 @@ const post = async (URL_LOGIN, data) => {
       },
     });
     const resp = await response.json();
-    console.log(resp) 
+    return(resp) 
   }
   catch (error) {
     console.log('fetch failed', error);

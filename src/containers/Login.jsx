@@ -18,7 +18,6 @@ const Login = () => {
 
   }
   const onSubmit = (data, e) => {
-    console.log(data)
     e.target.reset();
     handlePost(data);
   };
