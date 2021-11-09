@@ -8,11 +8,12 @@ const post = async (URL_LOGIN, data) => {
       body: JSON.stringify(data),
       // body: data,
       headers: {
-        'Content-Type': 'application/json',
+        // 'Content-Type': 'application/json',
+        // 'mode' : 'no-cors'
       },
     });
     const resp = await response.json();
-    return(resp) 
+    console.log(resp) 
   }
   catch (error) {
     console.log('fetch failed', error);

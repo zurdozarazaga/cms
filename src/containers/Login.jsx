@@ -11,17 +11,26 @@ import post from '../services/post';
 // import { faGoogle, faFacebook } from '@fortawesome/free-brands-svg-icons';
 
 const Login = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors, isSubmitting} } = useForm();
 
   const handlePost = (data) => {
     post(URL_LOGIN, data);
-
+    console.log(data);
   }
   const onSubmit = (data, e) => {
     e.target.reset();
     handlePost(data);
   };
 
+
+  console.log(`isSubmitting ${isSubmitting}`);
+  console.log(`errors.nick ${errors.nick}`);
+  console.log(`errors.pass ${errors.pass}`);
+
+  // console.log(`isValid  ${isValid}`);
+  // console.log(` No isDirty  ${isDirty}`);
+  
+  
   return (
     <section className='login'>
       <section className='login__container'>
@@ -60,7 +69,11 @@ const Login = () => {
           <span className="text-danger text-small d-block mb-2">
             {errors.pass &&  errors.pass.message}
           </span>
-          <button className='button' type='submit'>
+          <button
+            className='button'
+            type='submit'
+            disabled={isSubmitting }
+          >
             Iniciar sesión 
           </button>
           <div className='login__container--remember-me'>
