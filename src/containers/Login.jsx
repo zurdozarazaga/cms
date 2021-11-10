@@ -15,17 +15,12 @@ const Login = () => {
 
   const handlePost = (data) => {
     post(URL_LOGIN, data);
-    console.log(data);
   }
   const onSubmit = (data, e) => {
     e.target.reset();
     handlePost(data);
   };
 
-
-  console.log(`isSubmitting ${isSubmitting}`);
-  console.log(`errors.nick ${errors.nick}`);
-  console.log(`errors.pass ${errors.pass}`);
 
   // console.log(`isValid  ${isValid}`);
   // console.log(` No isDirty  ${isDirty}`);
