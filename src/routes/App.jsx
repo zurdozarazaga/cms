@@ -15,8 +15,8 @@ const App = () => (
         <Routes>
           <Route exact path='/' element={<Home/>} />
             <Route exact path='/login' element={<Login/>} />
+              <Route exact path='/UserAdminHome' element={<UserAdminHome/>} />
             <Route exact path='/register' element={<Register/>} />
-          <Route exact path='/UserAdminHome' element={<UserAdminHome/>} />
           <Route element={<NotFound/>} />
         </Routes>
   </BrowserRouter>

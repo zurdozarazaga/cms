@@ -1,0 +1,88 @@
+@import '../Vars.scss';
+// @import '../Media.scss'; 
+
+
+
+.navigation{
+  grid-area: navigation;
+  width: 100%;
+  height: 100%;
+  background: $navigation-color;
+  color: $color-lyrics;
+  font-size: 16px;
+  position: relative;
+    
+}
+
+.navigation__container a {
+  color: $color-lyrics;
+}
+
+.navigation__container {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  padding-top: 5px;
+  
+  
+}
+
+.navigation__container li {
+  position: relative;
+  width: 100%;
+  height: 10%;
+  padding-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // border-bottom: solid 0.7px $color-lyrics;
+}
+
+.navigation__container ul {
+  padding-top: 10px;
+}
+
+.navigation__container a {
+  text-decoration: none; 
+}
+
+.navigation__container a:hover {
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
+}
+
+
+
+li.navigation__item--Editar {
+  padding: 0;
+  display: block;
+  text-align: center;
+  padding-top: 10px;
+  
+}
+
+
+li.navigation__item--Elementos {
+  padding: 0;
+  padding-top: 10px;
+  display: block;
+  text-align: center; 
+}
+
+.visible {
+  background-color: $dropdown--hover;
+}
+
+.visible a{
+  display: block;
+  padding: 0;
+  text-align: center;
+  padding-top: 10px;
+}
+
+.no-visible {
+  display: none;
+}
