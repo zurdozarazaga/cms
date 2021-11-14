@@ -66,7 +66,7 @@ const Login = () => {
           <span className="text-danger text-small d-block mb-2">
             {errors.pass &&  errors.pass.message}
           </span>
-          <Link to = '/UserAdminHome'>
+          <Link to = '/LayoutUser'>
             <button
               className='button'
               type='submit'

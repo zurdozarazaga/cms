@@ -5,9 +5,10 @@ import Navigation from '../components/Navigation';
 import '../assets/styles/components/Navigation.scss';
 import '../assets/styles/containers/App.scss';
 
-const UserAdminHome = () => (
+const UserAdminHome = ({ children}) => (
   <div className='app'>
     <Header />
+    { children}
     <Navigation />
   </div>
 );

@@ -30,13 +30,13 @@ const Navigation = () => {
         <li className='navigation__item--Editar' id='editar'>
           <a onClick={handleClickEdit} href='#editar'>Ordenes</a>
           <div className={dropdownEdit ? 'visible' : 'no-visible'}>
-            <Link to='/Montajes'>
+            <Link to='/OrdenDia'>
               Orden del Día
             </Link>
-            <Link to='/Desmontajes'>
+            <Link to='/OrdenGuarnicion'>
               Orden de Guarnición
             </Link>
-            <Link to='/Desmontajes'>
+            <Link to='/OrdenReservada'>
               Orden Reservada
             </Link>
           </div>
