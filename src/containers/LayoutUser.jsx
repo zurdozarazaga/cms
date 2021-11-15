@@ -1,17 +1,19 @@
 import React from 'react';
 
+
+
 import Header from '../components/Header';
-import Footer from '../components/Footer';
+
 import Navigation from '../components/Navigation';
 
+import '../assets/styles/components/Header.scss';
+import '../assets/styles/components/Navigation.scss';
 
 
-const Layout = ({ children }) => (
+const LayoutUser = ({ children }) => (
   <div className='app'>
-  <Header />
   { children}
-  <Navigation />
 </div>
 );
 
-export default Layout;
+export default LayoutUser;
