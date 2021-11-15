@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { Table } from 'reactstrap';
+
 
 const OrdenDia = () => {
 
@@ -10,34 +12,63 @@ const OrdenDia = () => {
   
   const mostrarDatos = () => {
     return (
-      <div>
-        <table border="1">
+      <>
+        {/* <div>
+          <table border="1">
+            <thead>
+              <tr>
+                <th>Tipo</th>
+                <th>Nº</th>
+                <th>Año</th>
+                <th>Fecha</th>
+                <th>Descripcion</th>
+                <th>File</th>
+              </tr>
+            </thead>
+            <tbody>
+              {ordenes.map(ord => {
+                return (
+                  <tr key={ord.id}>
+                    <td>{ord.type}</td>
+                    <td>{ord.number}</td>
+                    <td>{ord.year}</td>
+                    <td>{ord.date}</td>
+                    <td>{ord.about}</td>
+                    <td><a href={'http://proyectogm.herokuapp.com/' + ord.file_url}>file</a></td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div> */}
+
+          <Table striped>
           <thead>
-            <tr>
-              <th>Tipo</th>
-              <th>Nº</th>
-              <th>Año</th>
-              <th>Fecha</th>
-              <th>Descripcion</th>
-              <th>File</th>
-            </tr>
-          </thead>
-          <tbody>
-            {ordenes.map(ord => {
-              return (
-                <tr key={ord.id}>
-                  <td>{ord.type}</td>
-                  <td>{ord.number}</td>
-                  <td>{ord.year}</td>
-                  <td>{ord.date}</td>
-                  <td>{ord.about}</td>
-                  <td><a href={'http://proyectogm.herokuapp.com/' + ord.file_url}>file</a></td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
+              <tr>
+                <th>Tipo</th>
+                <th>Nº</th>
+                <th>Año</th>
+                <th>Fecha</th>
+                <th>Descripcion</th>
+                <th>File</th>
+              </tr>
+            </thead>
+            <tbody>
+              {ordenes.map(ord => {
+                return (
+                  <tr key={ord.id}>
+                    <td>{ord.type}</td>
+                    <td>{ord.number}</td>
+                    <td>{ord.year}</td>
+                    <td>{ord.date}</td>
+                    <td>{ord.about}</td>
+                    <td><a href={'http://proyectogm.herokuapp.com/' + ord.file_url}>ver</a></td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </Table>
+      </>
     );
   };
   useEffect(() => {
