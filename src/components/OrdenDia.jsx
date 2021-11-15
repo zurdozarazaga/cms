@@ -62,7 +62,7 @@ const OrdenDia = () => {
                     <td>{ord.year}</td>
                     <td>{ord.date}</td>
                     <td>{ord.about}</td>
-                    <td><a href={'http://proyectogm.herokuapp.com/' + ord.file_url}>ver</a></td>
+                    <td><a href={'https://proyectogm.herokuapp.com/' + ord.file_url}>ver</a></td>
                   </tr>
                 );
               })}
@@ -72,7 +72,7 @@ const OrdenDia = () => {
     );
   };
   useEffect(() => {
-    fetch('http://proyectogm.herokuapp.com/public/api/orders')
+    fetch('https://proyectogm.herokuapp.com/public/api/orders')
       .then((response) => {
         return response.json()
       })
