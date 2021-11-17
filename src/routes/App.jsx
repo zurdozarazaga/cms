@@ -16,6 +16,7 @@ import LayoutUser from '../containers/LayoutUser';
 import Register from '../containers/Register';
 import OrdenDia from '../components/OrdenDia';
 import OrdenGuarnicion from '../components/OrdenGuarnicion';
+import Modal from '../containers/Modal';
 
 const App = () => (
   <BrowserRouter>
@@ -33,7 +34,10 @@ const App = () => (
       </Routes>
       <Navigation />
     </div>
-    
+    {/* <Modal>
+      <p>Modal</p>  
+    </Modal>
+     */}
     
   </BrowserRouter>
 );
