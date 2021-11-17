@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../assets/styles/containers/Login.scss';
 
 import { Link } from 'react-router-dom';
@@ -8,6 +8,11 @@ import { URL_LOGIN } from '../util/constants';
 import { useForm } from "react-hook-form";
 
 import post from '../services/post';
+
+import '../assets/styles/components/Ver.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye } from '@fortawesome/free-solid-svg-icons';
+
 
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faGoogle, faFacebook } from '@fortawesome/free-brands-svg-icons';
@@ -24,8 +29,14 @@ const Login = () => {
   };
 
 
-  // console.log(`isValid  ${isValid}`);
-  // console.log(` No isDirty  ${isDirty}`);
+  // const [shown, setShown] = useState(false);
+ 
+
+  // const switchShown = () => setShown(!shown);
+
+  
+
+
   
   
   return (
@@ -50,19 +61,28 @@ const Login = () => {
           <span className="text-danger text-small d-block mb-2">
             {errors.nick &&  errors.nick.message}
           </span>
-          <input
-           className='input'
-           type='password'
-            placeholder='Contraseña'
-            name='pass'
-            {...register( 'pass', {
-              required: {
-                value: true,
-                message: 'Contraseña obligatoria'
-              }
-            })} 
-
-          />
+              <input
+            className='input'
+            // type={shown ? 'text' : 'password'}
+              placeholder='Contraseña'
+              name='pass'
+              {...register( 'pass', {
+                required: {
+                  value: true,
+                  message: 'Contraseña obligatoria'
+                }
+              })}
+              >
+              </input>
+            {/* <div>
+              <button 
+                onClick={switchShown}
+                type='button'
+              >
+                <FontAwesomeIcon icon={faEye} /> 
+              </button>
+            </div>
+          </div> */}
           <span className="text-danger text-small d-block mb-2">
             {errors.pass &&  errors.pass.message}
           </span>

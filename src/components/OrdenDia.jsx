@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Table } from 'reactstrap';
-import {Link} from 'react-router-dom';
+import DeleteBoton from './DeleteBoton';
+import VerBoton from './VerBoton.';
+
+
+
 
 
 const OrdenDia = () => {
@@ -63,8 +67,9 @@ const OrdenDia = () => {
                     <td>{ord.year}</td>
                     <td>{ord.date}</td>
                     <td>{ord.about}</td>
-                    <td><a href={'https://proyectogm.herokuapp.com/' + ord.file_url} target="_blank" rel="noreferrer">ver</a></td>
-                    <td><a href={'https://proyectogm.herokuapp.com/' + ord.file_url} target="_blank" rel="noreferrer">borrar</a></td>
+                    <td>{ <VerBoton ord= {ord.file_url} /> }</td>
+                    <td>{ <DeleteBoton ord= {ord.file_url} /> }</td>
+                    
                   </tr>
                 );
               })}
