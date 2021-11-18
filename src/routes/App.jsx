@@ -17,6 +17,7 @@ import Register from '../containers/Register';
 import OrdenDia from '../components/OrdenDia';
 import OrdenGuarnicion from '../components/OrdenGuarnicion';
 import Modal from '../containers/Modal';
+import Error404 from '../components/Error404';
 
 const App = () => (
   <BrowserRouter>
@@ -34,6 +35,9 @@ const App = () => (
       </Routes>
       <Navigation />
     </div>
+    <Routes>
+      <Route path='*' element={<Error404 />} />
+    </Routes>
     {/* <Modal>
       <p>Modal</p>  
     </Modal>
