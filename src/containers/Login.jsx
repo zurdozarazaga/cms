@@ -12,6 +12,7 @@ import post from '../services/post';
 import '../assets/styles/components/Ver.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
+import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -29,10 +30,10 @@ const Login = () => {
   };
 
 
-  // const [shown, setShown] = useState(false);
+  const [shown, setShown] = useState(false);
  
 
-  // const switchShown = () => setShown(!shown);
+  const switchShown = () => setShown(!shown);
 
   
 
@@ -46,8 +47,9 @@ const Login = () => {
           <h2>Iniciar sesión</h2>
         </div>
         <form className='login__container--form' onSubmit={handleSubmit(onSubmit)}>
+          <div>
           <input 
-            className='input'
+            className='input-user'
             type='text'
             placeholder='usuario'
             name='nick'
@@ -58,31 +60,33 @@ const Login = () => {
               }
             })}
           />
-          <span className="text-danger text-small d-block mb-2">
-            {errors.nick &&  errors.nick.message}
-          </span>
-              <input
-            className='input'
-            // type={shown ? 'text' : 'password'}
-              placeholder='Contraseña'
-              name='pass'
-              {...register( 'pass', {
-                required: {
-                  value: true,
-                  message: 'Contraseña obligatoria'
-                }
-              })}
-              >
-              </input>
-            {/* <div>
-              <button 
-                onClick={switchShown}
-                type='button'
-              >
-                <FontAwesomeIcon icon={faEye} /> 
-              </button>
-            </div>
-          </div> */}
+            <span className="text-danger text-small d-block mb-2">
+              {errors.nick &&  errors.nick.message}
+            </span>
+          </div>
+          <div>
+            <input
+              className='input-password'
+              type={shown ? 'text' : 'password'}
+                placeholder='Contraseña'
+                name='pass'
+                {...register( 'pass', {
+                  required: {
+                    value: true,
+                    message: 'Contraseña obligatoria'
+                  }
+                })}
+                >
+            </input>
+            <span 
+              onClick={switchShown}
+              type='button'
+            >
+              <FontAwesomeIcon icon={shown ? faEye : faEyeSlash} /> 
+            </span>
+          </div>
+            
+          
           <span className="text-danger text-small d-block mb-2">
             {errors.pass &&  errors.pass.message}
           </span>
