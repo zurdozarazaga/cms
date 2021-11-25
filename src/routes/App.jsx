@@ -1,7 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
 import { BrowserRouter , Routes, Route } from 'react-router-dom';
 
-import { UserContext } from '../Context/UserContext';
+// import { UserContext } from '../Context/UserContext';
 
 
 
@@ -24,7 +24,7 @@ const App = () => {
   
   // const userLogueado = useContext(UserContext);
   // console.log(userLogueado.data.user);
-  const userLogueado = true
+  
   ;
 
   // if(!userLogueado) {

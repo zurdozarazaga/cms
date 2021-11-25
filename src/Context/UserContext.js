@@ -1,6 +1,6 @@
 import React from 'react'
-import { URL_LOGIN } from '../util/constants';
-import post from '../services/post';
+// import { URL_LOGIN } from '../util/constants';
+// import post from '../services/post';
 
 
 const UserContext = React.createContext({});

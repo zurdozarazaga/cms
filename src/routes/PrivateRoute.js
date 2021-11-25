@@ -3,7 +3,7 @@ import { Navigate, Route } from 'react-router'
 
 
 function useAuth() {
-  return true;
+  return false;
 }
 
 function PrivateRoute({children}) {

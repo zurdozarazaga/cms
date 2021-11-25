@@ -13,6 +13,8 @@ import '../assets/styles/components/Ver.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { URL_LOGIN } from '../util/constants';
+import post from '../services/post';
 
 
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -22,10 +24,16 @@ const Login = () => {
   
   const { register, handleSubmit, formState: { errors, isSubmitting} } = useForm();
   
-
+  const handlePost = (data) => {
+    console.log(data)
+    post(URL_LOGIN, data)
+    console.log(data);
+  }
   
   const onSubmit = (data, e) => {
+    console.log(data)
     e.target.reset();
+    handlePost(data);
   };
 
 
@@ -106,31 +114,6 @@ const Login = () => {
             <a href='/'>Olvidé mi contraseña</a>
           </div>
         </form>
-        
-        {/* Section media login */}
-
-        {/* <section className='login__container--social-media'>
-          <div className='login__container--google'>
-            <span className='login__container--logo'>
-              { <FontAwesomeIcon icon={faGoogle} /> }
-            </span>
-            <span className='login__container--google-parrafo'>Iniciar sesion con Google</span>
-          </div>
-          <div className='login__container--facebook'>
-            <span className='login__container--logo'>
-              {<FontAwesomeIcon icon={faFacebook} /> }
-            </span>
-            <span className='login__container--facebook-parrafo'>Iniciar sesion con Facebook</span>
-          </div>
-          <div className='login__container--register'>
-            <p>
-              No tienes ninguna cuenta
-            </p>
-            <a href>
-              Regístrate
-            </a>
-          </div>
-        </section> */}
       </section>
     </section>
   );
