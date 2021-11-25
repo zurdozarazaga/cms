@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react';
+
+import { Outlet } from 'react-router';
+
 import { Table } from 'reactstrap';
 import DeleteBoton from './DeleteBoton';
 import VerBoton from './VerBoton.';
+
 
 
 
@@ -75,6 +79,7 @@ const OrdenDia = () => {
               })}
             </tbody>
           </Table>
+          <Outlet />
       </>
     );
   };
@@ -96,6 +101,7 @@ const OrdenDia = () => {
 else
   return (<div>recuperando datos...</div>)
 
+  
   };
 
 

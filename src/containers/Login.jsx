@@ -3,11 +3,11 @@ import '../assets/styles/containers/Login.scss';
 
 import { Link } from 'react-router-dom';
 
-import { URL_LOGIN } from '../util/constants';
+
 
 import { useForm } from "react-hook-form";
 
-import post from '../services/post';
+
 
 import '../assets/styles/components/Ver.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -19,14 +19,13 @@ import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 // import { faGoogle, faFacebook } from '@fortawesome/free-brands-svg-icons';
 
 const Login = () => {
+  
   const { register, handleSubmit, formState: { errors, isSubmitting} } = useForm();
+  
 
-  const handlePost = (data) => {
-    post(URL_LOGIN, data);
-  }
+  
   const onSubmit = (data, e) => {
     e.target.reset();
-    handlePost(data);
   };
 
 
@@ -90,7 +89,7 @@ const Login = () => {
           <span className="text-danger text-small d-block mb-2">
             {errors.pass &&  errors.pass.message}
           </span>
-          <Link to = '/LayoutUser'>
+          <a href = '/LayoutUser'>
             <button
               className='button'
               type='submit'
@@ -98,7 +97,7 @@ const Login = () => {
             >
               Iniciar sesión 
             </button>
-          </Link>
+          </a>
           <div className='login__container--remember-me'>
             <label>
               <input type='checkbox' id='cbox1' defaultValue='first_checkbox' />

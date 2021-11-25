@@ -1,49 +1,61 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import { BrowserRouter , Routes, Route } from 'react-router-dom';
+
+import { UserContext } from '../Context/UserContext';
+
+
 
 import '../assets/styles/containers/App.scss'
 
-import HomeRoute from './HomeRoute';
-import DashboardRoute from './DashboardRoute';
-
-
-import Home from '../containers/Home';
-import Login from '../containers/Login';
 import Header from '../components/Header';
 import Navigation from '../components/Navigation';
 import LayoutUser from '../containers/LayoutUser';
+import Home from '../containers/Home';
 
+import Login from '../containers/Login';
 import Register from '../containers/Register';
 import OrdenDia from '../components/OrdenDia';
 import OrdenGuarnicion from '../components/OrdenGuarnicion';
-import Modal from '../containers/Modal';
+// import Modal from '../containers/Modal';
 import Error404 from '../components/Error404';
+import PrivateRoute from './PrivateRoute';
 
-const App = () => (
-  <BrowserRouter>
-      <Routes>
-        {/* <Route exact path='/' element={<Home/>} /> */}
-        <Route exact path='/' element={<Login/>} />
-      </Routes>
-    <div className='app'>
-      <Header />
-      <Routes>
-        <Route  path='/LayoutUser' element={<LayoutUser/>} />
-          <Route  path='/OrdenDia' element={<OrdenDia/>} />
-          <Route  path='/OrdenGuarnicion' element={<OrdenGuarnicion/>} />
-          <Route  path='/register' element={<Register/>} />
-      </Routes>
-      <Navigation />
-    </div>
-    <Routes>
-      <Route path='*' element={<Error404 />} />
-    </Routes>
-    {/* <Modal>
-      <p>Modal</p>  
-    </Modal>
-     */}
+const App = () => {
+  
+  // const userLogueado = useContext(UserContext);
+  // console.log(userLogueado.data.user);
+  const userLogueado = true
+  ;
+
+  // if(!userLogueado) {
+  //   return <Login />
+  // };
+  return (
     
-  </BrowserRouter>
-);
+      <BrowserRouter>
+          <Routes>
+            <Route  path='/LayoutUser' element={
+              <PrivateRoute>
+                <LayoutUser/>
+              </PrivateRoute>
+            } />
+              <Route  path='OrdenDia' element={
+                <PrivateRoute>
+                  <OrdenDia/>
+                </PrivateRoute>
+              } />
+              <Route  path='OrdenGuarnicion' element={
+                <PrivateRoute>
+                  <OrdenGuarnicion/>
+                </PrivateRoute>
+              } />
+            <Route  path='register' element={<Register/>} />
+            <Route  path='/login' element={<Login/>} />
+            <Route  path='/' element={<Home />} />
+            <Route path='*' element={<Error404 />} />
+          </Routes>
+      </BrowserRouter>
+  )
+};
 
 export default App;
