@@ -41,12 +41,20 @@ const App = () => {
             } />
               <Route  path='OrdenDia' element={
                 <PrivateRoute>
-                  <OrdenDia/>
+                  <div className='app'>
+                    <Header />
+                    <OrdenDia />
+                    <Navigation />
+                  </div>
                 </PrivateRoute>
               } />
               <Route  path='OrdenGuarnicion' element={
                 <PrivateRoute>
-                  <OrdenGuarnicion/>
+                  <div className='app'>
+                    <Header />
+                    <OrdenGuarnicion/>
+                    <Navigation />
+                  </div>
                 </PrivateRoute>
               } />
             <Route  path='register' element={<Register/>} />

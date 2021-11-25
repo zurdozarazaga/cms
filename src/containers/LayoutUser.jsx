@@ -17,10 +17,7 @@ const LayoutUser = ({ children }) => {
   
   <div className='app'>
   <Header />
-    {/* <Route  path='LayoutUser/*' element={<LayoutUser/>} />
-      <Route  path='OrdenDia' element={<OrdenDia/>} />
-      <Route  path='OrdenGuarnicion' element={<OrdenGuarnicion/>} />
-      <Route  path='register' element={<Register/>} /> */}
+    {children}
 
   <Navigation />
   

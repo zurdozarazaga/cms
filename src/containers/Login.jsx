@@ -89,7 +89,7 @@ const Login = () => {
           <span className="text-danger text-small d-block mb-2">
             {errors.pass &&  errors.pass.message}
           </span>
-          <a href = '/LayoutUser'>
+          <Link to = '/LayoutUser'>
             <button
               className='button'
               type='submit'
@@ -97,7 +97,7 @@ const Login = () => {
             >
               Iniciar sesión 
             </button>
-          </a>
+          </Link>
           <div className='login__container--remember-me'>
             <label>
               <input type='checkbox' id='cbox1' defaultValue='first_checkbox' />
