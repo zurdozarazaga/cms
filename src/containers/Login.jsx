@@ -28,11 +28,9 @@ const Login = () => {
   const handlePost = (data) => {
     console.log(data)
     post(URL_LOGIN, data)
-    console.log(data);
   }
   
   const onSubmit = (data, e) => {
-    console.log(data)
     e.target.reset();
     handlePost(data);
     navigate('/LayoutUser');
