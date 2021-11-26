@@ -27,9 +27,6 @@ const App = () => {
   
   ;
 
-  // if(!userLogueado) {
-  //   return <Login />
-  // };
   return (
     
       <BrowserRouter>

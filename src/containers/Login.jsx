@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../assets/styles/containers/Login.scss';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate  } from 'react-router-dom';
 
 
 
@@ -17,13 +17,14 @@ import { URL_LOGIN } from '../util/constants';
 import post from '../services/post';
 
 
+
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faGoogle, faFacebook } from '@fortawesome/free-brands-svg-icons';
 
 const Login = () => {
   
   const { register, handleSubmit, formState: { errors, isSubmitting} } = useForm();
-  
+  const navigate = useNavigate ();
   const handlePost = (data) => {
     console.log(data)
     post(URL_LOGIN, data)
@@ -34,6 +35,8 @@ const Login = () => {
     console.log(data)
     e.target.reset();
     handlePost(data);
+    navigate('/LayoutUser');
+    
   };
 
 
@@ -97,15 +100,15 @@ const Login = () => {
           <span className="text-danger text-small d-block mb-2">
             {errors.pass &&  errors.pass.message}
           </span>
-          <Link to = '/LayoutUser'>
-            <button
-              className='button'
-              type='submit'
-              disabled={isSubmitting }
-            >
-              Iniciar sesión 
-            </button>
-          </Link>
+
+              <button
+                className='button'
+                type='submit'
+                disabled={isSubmitting }
+                
+                >
+                Iniciar sesión 
+              </button>    
           <div className='login__container--remember-me'>
             <label>
               <input type='checkbox' id='cbox1' defaultValue='first_checkbox' />
