@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useReducer } from 'react'
+import loginReducer, { initialState } from '../reducers/loginReducer';
 // import { URL_LOGIN } from '../util/constants';
 // import post from '../services/post';
 
 
 const UserContext = React.createContext({});
 
-const initalUser = {id: 1, nick: 'admin', pass: '1234' }
 
   // const dataLogueado = post(URL_LOGIN, data);
    
@@ -13,16 +13,20 @@ const initalUser = {id: 1, nick: 'admin', pass: '1234' }
   
 
 function UserProvider ({ children }) {
-  const [user, setUser] = React.useState(initalUser);
-  
-  const login = () => {
-    setUser(initalUser);
-  }
+  // const initalUser = {id: 1, nick: 'admin', pass: '1234' }
+  // const [user, setUser] = React.useState(initalUser);
+  // const login = () => {
+  //   setUser(initalUser);
+  // }
 
-  const data = { user, login};
+//viene del loginreducer y se envia mediante el provider al login
+const [storeUser, dispatch] = useReducer(loginReducer, initialState);
+
+
   
   return (
-    <UserContext.Provider value={{data}}>
+    //se envia el estado y la funcion de dispatch
+    <UserContext.Provider value={[storeUser, dispatch]}>
       { children }
     </UserContext.Provider>
   );

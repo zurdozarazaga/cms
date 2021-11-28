@@ -13,7 +13,7 @@ const post = async (URL_LOGIN, data) => {
       },
     });
     const resp = await response.json();
-    console.log(resp) 
+    return resp; 
   }
   catch (error) {
     console.log('fetch failed', error);

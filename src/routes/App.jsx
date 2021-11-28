@@ -19,22 +19,21 @@ import OrdenGuarnicion from '../components/OrdenGuarnicion';
 // import Modal from '../containers/Modal';
 import Error404 from '../components/Error404';
 import PrivateRoute from './PrivateRoute';
+import { UserProvider } from '../Context/UserContext';
 
 const App = () => {
   
-  // const userLogueado = useContext(UserContext);
-  // console.log(userLogueado.data.user);
-  
-  ;
 
   return (
     
       <BrowserRouter>
           <Routes>
             <Route  path='/LayoutUser' element={
-              <PrivateRoute>
-                <LayoutUser/>
-              </PrivateRoute>
+              <UserProvider >
+                <PrivateRoute>
+                  <LayoutUser/>
+                </PrivateRoute>
+              </UserProvider>
             } />
               <Route  path='OrdenDia' element={
                 <PrivateRoute>
@@ -55,7 +54,12 @@ const App = () => {
                 </PrivateRoute>
               } />
             <Route  path='register' element={<Register/>} />
-            <Route  path='/login' element={<Login/>} />
+            <Route  path='/login' element={
+              // se envía el usuario logueado con el contexto
+              <UserProvider >
+                <Login/>
+              </UserProvider>
+            } />
             <Route  path='/' element={<Home />} />
             <Route path='*' element={<Error404 />} />
           </Routes>
