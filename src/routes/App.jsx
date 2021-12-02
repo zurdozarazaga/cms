@@ -57,7 +57,7 @@ const App = () => {
             <Route  path='/login' element={
               // se envía el usuario logueado con el contexto
               <UserProvider >
-                <Login/>
+                  <Login/>
               </UserProvider>
             } />
             <Route  path='/' element={<Home />} />

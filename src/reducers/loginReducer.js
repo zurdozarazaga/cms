@@ -2,8 +2,8 @@
 //obtendra los datos del login
 
 const initialState = {
-  nick: 'nick',
-  pass: 'pass',
+  nick: '',
+  pass: '',
 }
 //es enviado al UserContext y debido a eso se comunica con el login por context. 
 const loginReducer = (state , action) => {
@@ -13,7 +13,7 @@ const loginReducer = (state , action) => {
       return {
         ...state,
         nick: action.payload.nick,
-        pass: action.payload.pass
+        pass: action.payload.pass,
       };
       default:
         return state;

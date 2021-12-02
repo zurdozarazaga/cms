@@ -1,5 +1,10 @@
 import '../util/constants';
+import {  useNavigate  } from 'react-router-dom';
+import Cookies from 'universal-cookie'
 
+
+
+const cookies = new Cookies();
 const post = async (URL_LOGIN, data) => {
   try{
     const response = await fetch(URL_LOGIN, {
@@ -13,7 +18,14 @@ const post = async (URL_LOGIN, data) => {
       },
     });
     const resp = await response.json();
-    return resp; 
+    if (await resp.role.length > 0) {
+      // const respuesta = resp[0];
+      cookies.set('id', resp.id, { path: '/' });
+      cookies.set('role', resp.role, { path: '/' });
+      cookies.set('name', resp.name, { path: '/' });
+    }else{
+      console.log('no hay respuesta');
+    }
   }
   catch (error) {
     console.log('fetch failed', error);

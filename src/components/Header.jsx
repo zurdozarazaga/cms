@@ -1,10 +1,23 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../assets/styles/components/Header.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
+import Cookies from 'universal-cookie';
 
-const Header = () => (
+const Header = () => {
+  const cookies = new Cookies();
+  const navigate = useNavigate ();
+  
+  
+  const cerrarSesion = () => {
+    cookies.remove('id', { path: '/' });
+    cookies.remove('role', { path: '/' });
+    cookies.remove('name', { path: '/' });
+    navigate('./login');
+  }
+  return (
+
   <header className='header'>
     <div className='header__container'>
       <div className='header__hero'>
@@ -25,7 +38,8 @@ const Header = () => (
           <div className='dropdown__content'>
             <a href=''>Perfil</a>
             <a href=''>Registrarse</a>
-            <Link to='login'>
+
+            <Link to='/login' onClick={cerrarSesion}>
               Cerrar Sesion
             </Link>
             {/* <a href=''>Iniciar Sesion</a> */}
@@ -34,6 +48,7 @@ const Header = () => (
       </div>
     </div>
   </header>
-);
+  )
+  };
 
 export default Header;

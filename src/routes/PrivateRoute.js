@@ -1,30 +1,33 @@
-import React, { useState, useContext } from 'react'
-import { Navigate } from 'react-router'
+import React, { useState, useContext, useEffect } from 'react'
+import { Navigate, useNavigate } from 'react-router'
+import useAuth from '../auth/useAuth';
+import Auth from '../hooks/useAuth';
 import { UserContext } from '../Context/UserContext';
+import post from '../services/post';
+import { URL_LOGIN } from '../util/constants';
 
 
 
-// function useAuth(context) {
-//   const [auth, setAuth] = useState(false);
 
-//   if (context) {
-//     setAuth(true);
-//   } else {
-//   setAuth(false);
-//   }
-//   return (
-//     auth
-//   )
-// }
 
 
 function PrivateRoute({children}) {
+
   
-  const { nick } = useContext(UserContext);
   
-    // const auth = useAuth();
-    return nick ? children : <Navigate to="/login" />;
+
   
+  return (
+    Auth() ? 
+
+          children
+    
+          :
+      
+            <Navigate to="/login" />
+
+    
+  )
 };
 
 export default PrivateRoute;

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useReducer } from 'react';
+import React, { useState, useContext, useReducer, useEffect } from 'react';
 import '../assets/styles/containers/Login.scss';
 
 import { Link, useNavigate  } from 'react-router-dom';
@@ -15,6 +15,9 @@ import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { URL_LOGIN } from '../util/constants';
 
 import post from '../services/post';
+import Auth from '../auth/useAuth';
+import useAuth from '../auth/useAuth';
+import Cookies from 'universal-cookie';
 
 
 
@@ -24,34 +27,39 @@ import post from '../services/post';
 const Login = () => {
   //este contexto posee el state y dsipatch de loginReducer que se envio en el provider
   const [storeUser, dispatch] = useContext(UserContext);
+ 
   const { nick, pass  } = storeUser
   const { register, handleSubmit, formState: { errors, isSubmitting} } = useForm();
   const navigate = useNavigate ();
-
-  const handlePost = (data) => {
-    //manejador de POST
-    post(URL_LOGIN, data)
-  }
-  // se le envia la data y el evento con el useForm
-  const onSubmit = (data, e) => {
+  
+  const onSubmit  =  async(data, e) => {
     e.target.reset();
-    handlePost(data);
-    //redirecciona a LayoutUser
-    navigate('/LayoutUser');
+    await post(URL_LOGIN, data)
     //el dispatch viene del provider del useContext y se lo envia al loginReducer
-    dispatch({
-      type: 'LOGIN_SUCCESS',
-      payload: data
-    })
+    // dispatch({
+    //   type: 'LOGIN_SUCCESS',
+    //   payload: data
+    // })
+    navigate('/LayoutUser');
   };
+  
+  
+  // se le envia la data y el evento con el useForm
 
 
   const [shown, setShown] = useState(false);
  
 
   const switchShown = () => setShown(!shown);
+  // const cookies = new Cookies();
+
+  // console.log(cookies.get('id'));
+  // console.log(cookies.get('role'));
+  // console.log(cookies.get('name'));
+
 
   
+
   return (
     <section className='login'>
       <section className='login__container'>

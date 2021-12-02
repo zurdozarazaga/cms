@@ -1,5 +1,6 @@
 import React from 'react';
-import { Route } from 'react-router';
+import { Route, useNavigate } from 'react-router';
+import Cookies from 'universal-cookie';
 
 
 import '../assets/styles/components/Header.scss';
@@ -12,13 +13,11 @@ import Register from './Register';
 
 
 const LayoutUser = ({ children }) => { 
-  console.log(children);
+
   return(
-  
   <div className='app'>
   <Header />
     {children}
-
   <Navigation />
   
   </div>
