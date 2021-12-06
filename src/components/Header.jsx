@@ -9,6 +9,7 @@ const Header = () => {
   const cookies = new Cookies();
   const navigate = useNavigate ();
   
+  const nameUser = cookies.get('name');
   
   const cerrarSesion = () => {
     cookies.remove('id', { path: '/' });
@@ -34,7 +35,7 @@ const Header = () => {
           </span>
         </div>
         <div className='dropdown'>
-          <span className='dropdown__user--name'>Administrador demo</span>
+          <span className='dropdown__user--name'>{nameUser}</span>
           <div className='dropdown__content'>
             <a href=''>Perfil</a>
             <a href=''>Registrarse</a>

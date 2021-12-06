@@ -1,22 +1,12 @@
-import React, { useState, useContext, useEffect } from 'react'
-import { Navigate, useNavigate } from 'react-router'
-import useAuth from '../auth/useAuth';
+import React from 'react'
+import { Navigate } from 'react-router'
 import Auth from '../hooks/useAuth';
-import { UserContext } from '../Context/UserContext';
-import post from '../services/post';
-import { URL_LOGIN } from '../util/constants';
-
-
-
-
 
 
 function PrivateRoute({children}) {
+//recibe la funcion Auth() que validara si el usuario esta autenticado meditante las cookies
 
-  
-  
-
-  
+//si el usuario esta autenticado, entonces renderiza el componente hijo
   return (
     Auth() ? 
 

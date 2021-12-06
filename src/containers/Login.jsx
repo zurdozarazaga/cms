@@ -1,9 +1,9 @@
-import React, { useState, useContext, useReducer, useEffect } from 'react';
+import React, { useState } from 'react';
 import '../assets/styles/containers/Login.scss';
 
-import { Link, useNavigate  } from 'react-router-dom';
+import {  useNavigate  } from 'react-router-dom';
 
-import { UserContext } from '../Context/UserContext';
+
 
 import { useForm } from "react-hook-form";
 
@@ -15,9 +15,7 @@ import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { URL_LOGIN } from '../util/constants';
 
 import post from '../services/post';
-import Auth from '../auth/useAuth';
-import useAuth from '../auth/useAuth';
-import Cookies from 'universal-cookie';
+
 
 
 
@@ -25,39 +23,21 @@ import Cookies from 'universal-cookie';
 
 
 const Login = () => {
-  //este contexto posee el state y dsipatch de loginReducer que se envio en el provider
-  const [storeUser, dispatch] = useContext(UserContext);
- 
-  const { nick, pass  } = storeUser
   const { register, handleSubmit, formState: { errors, isSubmitting} } = useForm();
   const navigate = useNavigate ();
   
   const onSubmit  =  async(data, e) => {
     e.target.reset();
+    //peticion Login 
     await post(URL_LOGIN, data)
-    //el dispatch viene del provider del useContext y se lo envia al loginReducer
-    // dispatch({
-    //   type: 'LOGIN_SUCCESS',
-    //   payload: data
-    // })
+    //redirecciona a LayoutUser
     navigate('/LayoutUser');
   };
   
   
-  // se le envia la data y el evento con el useForm
-
-
   const [shown, setShown] = useState(false);
- 
-
   const switchShown = () => setShown(!shown);
-  // const cookies = new Cookies();
-
-  // console.log(cookies.get('id'));
-  // console.log(cookies.get('role'));
-  // console.log(cookies.get('name'));
-
-
+  
   
 
   return (
@@ -66,7 +46,7 @@ const Login = () => {
         <div className='login_container--title'>
           <h2>Iniciar sesión</h2>
         </div>
-        {/* en el onSumit se enviara el dsispatch a loginreducer */}
+        {/* en el onSumit se enviara al post  */}
         <form className='login__container--form' onSubmit={handleSubmit(onSubmit)}>
           <div>
           <input 
@@ -74,6 +54,7 @@ const Login = () => {
             type='text'
             placeholder='usuario'
             name='nick'
+            //validacion de usuario en el caso de que no ingrese nada
             {...register( 'nick', {
               required: {
                 value: true,
@@ -81,6 +62,7 @@ const Login = () => {
               }
             })}
           />
+            {/* si el usuario no ingresa nada se muestra el error */}
             <span className="text-danger text-small d-block mb-2">
               {errors.nick &&  errors.nick.message}
             </span>
@@ -91,6 +73,7 @@ const Login = () => {
               type={shown ? 'text' : 'password'}
                 placeholder='Contraseña'
                 name='pass'
+                //validacion de password en el caso de que no ingrese nada
                 {...register( 'pass', {
                   required: {
                     value: true,
@@ -107,7 +90,7 @@ const Login = () => {
             </span>
           </div>
             
-          
+          {/* si el password no ingresa nada se muestra el error */}
           <span className="text-danger text-small d-block mb-2">
             {errors.pass &&  errors.pass.message}
           </span>
@@ -115,6 +98,7 @@ const Login = () => {
               <button
                 className='button'
                 type='submit'
+                //funcion de useForm
                 disabled={isSubmitting }
                 
                 >

@@ -6,6 +6,8 @@ import { Table } from 'reactstrap';
 import DeleteBoton from './DeleteBoton';
 import VerBoton from './VerBoton.';
 
+import '../assets/styles//components/OrdenDia.scss';
+
 
 
 
@@ -50,16 +52,21 @@ const OrdenDia = () => {
             </tbody>
           </table>
         </div> */}
-
-          <Table striped>
+        <div className='container m-0 p-0' >
+          <div className=' title-table align-items-center'>
+            <h6 className='title-table text-white d-flex justify-content-center'>ORDENES DEL DÍA</h6>
+          </div>
+          <table className="table table-dark table-striped table-hover">
+          <caption>Listado de ordenes</caption>
           <thead>
               <tr>
-                <th>Tipo</th>
-                <th>Nº</th>
-                <th>Año</th>
-                <th>Fecha</th>
-                <th>Descripcion</th>
-                <th>File</th>
+                <th className='' scope="col">Tipo</th>
+                <th scope="col" >Nº</th>
+                <th scope="col" >Año</th>
+                <th scope="col" >Fecha</th>
+                <th scope="col" >Descripción</th>
+                <th scope="col" >Archivo</th>
+                <th scope="col" >Borrar</th>
               </tr>
             </thead>
             <tbody>
@@ -78,8 +85,9 @@ const OrdenDia = () => {
                 );
               })}
             </tbody>
-          </Table>
+          </table>
           <Outlet />
+        </div>
       </>
     );
   };
