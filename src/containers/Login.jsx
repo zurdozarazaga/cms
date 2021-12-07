@@ -14,7 +14,7 @@ import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 import { URL_LOGIN } from '../util/constants';
 
-import post from '../services/post';
+import login from '../services/login';
 
 
 
@@ -29,7 +29,7 @@ const Login = () => {
   const onSubmit  =  async(data, e) => {
     e.target.reset();
     //peticion Login 
-    await post(URL_LOGIN, data)
+    await login(URL_LOGIN, data)
     //redirecciona a LayoutUser
     navigate('/LayoutUser');
   };

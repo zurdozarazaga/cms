@@ -78,8 +78,8 @@ const OrdenDia = () => {
                     <td>{ord.year}</td>
                     <td>{ord.date}</td>
                     <td>{ord.about}</td>
-                    <td>{ <VerBoton ord= {ord.file_url} /> }</td>
-                    <td>{ <DeleteBoton ord= {ord.file_url} /> }</td>
+                    <td>{ <VerBoton  ord= {ord.file_url} /> }</td>
+                    <td>{ <DeleteBoton idOrden={ord.id} ord= {ord.file_url} /> }</td>
                     
                   </tr>
                 );

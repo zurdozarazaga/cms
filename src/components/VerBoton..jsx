@@ -9,10 +9,12 @@ const VerBoton = ({ord}) => {
 
 
   return (
+    <>
     <botton className='tdActions--botton'>
     <a className='text-white' href={'https://proyectogm.herokuapp.com/' + ord} target="_blank" rel="noreferrer"> <FontAwesomeIcon icon={faEye} /> </a>
 
     </botton>
+    </>
   );
 };
 

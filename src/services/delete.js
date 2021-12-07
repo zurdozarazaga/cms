@@ -2,12 +2,12 @@ import '../util/constants';
 
 
 //post reutilizable
-const post = async (URL_LOGIN, data) => {
+const deleteElement = async (url, id) => {
   try{
-    const response = await fetch(URL_LOGIN, {
+    const response = await fetch(`${url}/${id}`, {
       method: 'DELETE',
       
-      body: JSON.stringify(data),
+      body: JSON.stringify(id),
       // body: data,
       headers: {
         // 'Content-Type': 'application/json',
@@ -17,7 +17,7 @@ const post = async (URL_LOGIN, data) => {
     //respuesta
     const resp = await response.json();
     if(response.status === 200){
-      return resp;
+      console.log(resp);
     }else{
       throw(resp.message);
     }
@@ -28,4 +28,4 @@ const post = async (URL_LOGIN, data) => {
 };
 
 
-export default post;
+export default deleteElement;
