@@ -5,7 +5,7 @@ import '../util/constants';
 const deleteElement = async (url, id) => {
   try{
     const response = await fetch(`${url}/${id}`, {
-      method: 'DELETE',
+      method: 'POST',
       
       body: JSON.stringify(id),
       // body: data,
@@ -17,7 +17,7 @@ const deleteElement = async (url, id) => {
     //respuesta
     const resp = await response.json();
     if(response.status === 200){
-      console.log(resp);
+      return resp;
     }else{
       throw(resp.message);
     }

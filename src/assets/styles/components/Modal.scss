@@ -1,0 +1,44 @@
+@import '../Vars.scss';
+
+.modal { 
+  position: "absolute",
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)'
+}
+
+.modal-content {
+  
+}
+
+.modal-content .btn {
+  
+}
+
+.container-header{
+  position: relative;
+  top: -50px;
+}
+
+.modal-header {
+  display: block !important;
+  width: 100%;
+  text-align: end;
+  padding: 0;
+  justify-content: space-between;
+}
+
+
+.btn-container{
+  text-align: end !important;
+  cursor: pointer;
+
+}
+
+.title {
+  display: inline;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
+};

@@ -1,13 +1,10 @@
 @import '../Vars.scss';
 
-.container-h3 {
-  height: 5px;
-  font-weight: normal;
-  letter-spacing: -1px;
-  color: #f7fbff;
 
+.container--title_table {
+  background-color: #222d32;
+  
 }
-
 
 
 .title-table{
@@ -15,4 +12,5 @@
   margin: 0;
   height: 3em;
   align-items: center;
+  width: 100%;
 }

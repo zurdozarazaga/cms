@@ -21,49 +21,52 @@ import Error404 from '../components/Error404';
 import PrivateRoute from './PrivateRoute';
 import { UserProvider } from '../Context/UserContext';
 
+
 const App = () => {
   
 
   return (
-    
-      <BrowserRouter>
-          <Routes>
-            <Route  path='/LayoutUser' element={
-              <UserProvider >
-                <PrivateRoute>
-                  <LayoutUser/>
-                </PrivateRoute>
-              </UserProvider>
+    <>
+    <BrowserRouter>
+        <Routes>
+          <Route  path='/LayoutUser' element={
+            <UserProvider >
+              <PrivateRoute>
+                <LayoutUser/>
+              </PrivateRoute>
+            </UserProvider>
+          } />
+            <Route  path='OrdenDia' element={
+              <PrivateRoute>
+                <div className='app'>
+                  <Header />
+                  <OrdenDia />
+                  <Navigation />
+                </div>
+              </PrivateRoute>
             } />
-              <Route  path='OrdenDia' element={
-                <PrivateRoute>
-                  <div className='app'>
-                    <Header />
-                    <OrdenDia />
-                    <Navigation />
-                  </div>
-                </PrivateRoute>
-              } />
-              <Route  path='OrdenGuarnicion' element={
-                <PrivateRoute>
-                  <div className='app'>
-                    <Header />
-                    <OrdenGuarnicion/>
-                    <Navigation />
-                  </div>
-                </PrivateRoute>
-              } />
-            <Route  path='register' element={<Register/>} />
-            <Route  path='/login' element={
-              // se envía el usuario logueado con el contexto
-              <UserProvider >
-                  <Login/>
-              </UserProvider>
+            <Route  path='OrdenGuarnicion' element={
+              <PrivateRoute>
+                <div className='app'>
+                  <Header />
+                  <OrdenGuarnicion/>
+                  <Navigation />
+                </div>
+              </PrivateRoute>
             } />
-            <Route  path='/' element={<Home />} />
-            <Route path='*' element={<Error404 />} />
-          </Routes>
-      </BrowserRouter>
+          <Route  path='register' element={<Register/>} />
+          <Route  path='/login' element={
+            // se envía el usuario logueado con el contexto
+            <UserProvider >
+                <Login/>
+            </UserProvider>
+          } />
+          <Route  path='/' element={<Home />} />
+          <Route path='*' element={<Error404 />} />
+        </Routes>
+    </BrowserRouter>
+   
+    </>
   )
 };
 

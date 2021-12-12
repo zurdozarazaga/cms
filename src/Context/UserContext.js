@@ -8,18 +8,17 @@ import loginReducer, { initialState } from '../reducers/loginReducer';
 const UserContext = React.createContext({});
 
 
-  // const dataLogueado = post(URL_LOGIN, data);
-   
-  
-  
-
 function UserProvider ({ children }) {
 //viene del loginreducer y se envia mediante el provider al privateRoute
 const [storeUser, dispatch] = useReducer(loginReducer, initialState);
-
+const [openModal, setOpenModal] = React.useState(false);
   return (
     //se envia el estado y la funcion de dispatch
-    <UserContext.Provider value={[storeUser, dispatch]}>
+    <UserContext.Provider value={[storeUser,
+      dispatch,
+      openModal,
+      setOpenModal
+     ]}>
       { children }
     </UserContext.Provider>
   );
