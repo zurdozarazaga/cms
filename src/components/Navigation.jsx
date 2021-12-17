@@ -4,15 +4,15 @@ import '../assets/styles/components/Navigation.scss';
 
 const Navigation = () => {
   const [dropdownEdit, setDropdownEdit] = useState(false);
-  const [dropdownElement, setDropdownElement] = useState(false);
+  // const [dropdownElement, setDropdownElement] = useState(false);
 
   const handleClickEdit = () => {
     setDropdownEdit(!dropdownEdit);
   };
 
-  const handleClickElement = () => {
-    setDropdownElement(!dropdownElement);
-  };
+  // const handleClickElement = () => {
+  //   setDropdownElement(!dropdownElement);
+  // };
 
   return (
     <nav className='navigation'>

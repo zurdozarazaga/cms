@@ -1,5 +1,4 @@
-import React, { useReducer } from 'react'
-import authReducer, { initialStateAuth } from '../reducers/authReducer';
+import React, { useReducer } from 'react';
 import loginReducer, { initialState } from '../reducers/loginReducer';
 // import { URL_LOGIN } from '../util/constants';
 // import post from '../services/post';

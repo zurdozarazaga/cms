@@ -1,9 +1,6 @@
 import {useState} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
-import { useContext } from 'react';
-import {UserContext} from '../Context/UserContext';
 import ModalPortal  from '../modal/index';;
 
 

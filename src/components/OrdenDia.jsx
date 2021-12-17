@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 
 import { Outlet } from 'react-router';
 
-import { Table } from 'reactstrap';
 import DeleteBoton from './DeleteBoton';
 import VerBoton from './VerBoton.';
 

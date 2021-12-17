@@ -37,8 +37,8 @@ const Header = () => {
         <div className='dropdown'>
           <span className='dropdown__user--name'>{nameUser}</span>
           <div className='dropdown__content'>
-            <a href=''>Perfil</a>
-            <a href=''>Registrarse</a>
+            <Link to=''>Perfil</Link>
+            <Link to=''>Registrarse</Link>
 
             <Link to='/login' onClick={cerrarSesion}>
               Cerrar Sesion
