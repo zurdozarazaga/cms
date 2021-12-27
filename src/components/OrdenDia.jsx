@@ -32,7 +32,7 @@ const OrdenDia = () => {
           </div>
             <Add />
           </div>
-          <table className="table table-dark table-striped table-hover">
+          <table className="table table-dark table-striped table-hover table-wrapper-scroll">
           <caption>Listado de ordenes</caption>
           <thead>
               <tr>
