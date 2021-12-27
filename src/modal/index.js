@@ -12,25 +12,15 @@ import { useForm, Controller } from "react-hook-form";
 
 const ModalPotal = ({toggle, modal})=> {
   const { control, handleSubmit, formState: { errors, isSubmitting} } = useForm({});
- 
- 
- 
-//  console.log("Date: "+startDate.getDate()+
-//           "-"+(startDate.getMonth()+1)+
-//           "-"+startDate.getFullYear());
- 
-  //manejador de eventos para cargar archivos   
-  // const handleFileUpload = (e) => {
-  //   e.preventDefault();
-  //   console.log(e.target.select.value);
-    // const file = e.target.files[0];
-    // const formData = new FormData();
-    // formData.append('file', file);
-  // }
+
   const onSubmit = (data , e) => {
     e.preventDefault();
+    //instanciar FormData
+    const fData = new FormData();
     data.file = e.target.file.files;
-  
+    fData.append('file', data.file[0]);
+
+    //condicional para que el servidor pueda entenderlo
     if(data.type === "Orden del Día"){
       data.type ='od'
     }
@@ -40,14 +30,23 @@ const ModalPotal = ({toggle, modal})=> {
     if(data.type === "Orden Reservada"){
       data.type ='or'
     }
-    console.log(data);
+
+    //reccorer data con un for para agregarlo al formData
+    for (let key in data) {
+      fData.append(key, data[key]);
+      console.log(key);
+      console.log(data);
+    };
+
+    console.log(fData.get('file'));
+    console.log(fData);
     fetch(URL_CREATE, {
       method: 'POST',
-      body: data,
-      headers: {
-        'Content-Type': 'multi-part/form-data',
-        "type": "formData"
-      }
+      body: fData,
+      // headers: {
+      //   'Content-Type': 'multi-part/form-data',
+      //   "type": "formData"
+      // }
     })
     .then(res => res.json())
     .then(res => {
@@ -81,6 +80,7 @@ const ModalPotal = ({toggle, modal})=> {
         <Form onSubmit={handleSubmit(onSubmit)}>
           <FormGroup  id='form'>
           <Label for="exampleSelect">Seleccione el tipo de orden</Label>
+          {/* React Form hook es controlado asi que se debe implementar Controller */}
           <Controller
             type="select" 
             name="type" 
@@ -98,6 +98,7 @@ const ModalPotal = ({toggle, modal})=> {
                 <option>Orden Reservada</option>
               </Input>
             )}
+            // es igual que register para  controller
             rules={  {
               required:{
                 value: true,
