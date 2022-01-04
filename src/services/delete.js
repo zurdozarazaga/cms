@@ -3,16 +3,14 @@ import '../util/constants';
 
 //post reutilizable
 const deleteElement = async (url, id) => {
+  console.log(id);
   try{
     const response = await fetch(`${url}/${id}`, {
-      method: 'POST',
+      method: 'DELETE',
       
       body: JSON.stringify(id),
       // body: data,
-      headers: {
-        // 'Content-Type': 'application/json',
-        // 'mode' : 'no-cors'
-      },
+      
     });
     //respuesta
     const resp = await response.json();

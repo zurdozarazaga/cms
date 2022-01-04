@@ -1,18 +1,22 @@
-import { useState} from 'react';
+import { useContext, useReducer} from 'react';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Input, Label, Form, Container} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import {URL_CREATE} from '../util/constants';
 import { useForm, Controller } from "react-hook-form";
-
+import {modalReducer} from '../reducers/modalReducer';
+import { OrdenDiaContext } from '../Context/ordenDiaContext';
 
 
 
 
 const ModalPotal = ({toggle, modal})=> {
   const { control, handleSubmit, formState: { errors, isSubmitting} } = useForm({});
+  const [ordenes, dispatchOrdenes ] = useContext(OrdenDiaContext);
 
+
+  
   const onSubmit = (data , e) => {
     e.preventDefault();
     //instanciar FormData
@@ -34,12 +38,12 @@ const ModalPotal = ({toggle, modal})=> {
     //reccorer data con un for para agregarlo al formData
     for (let key in data) {
       fData.append(key, data[key]);
-      console.log(key);
-      console.log(data);
     };
 
     console.log(fData.get('file'));
     console.log(fData);
+    // BUG: se crea el elemento pero nunca se actualiza el objeto ordenes en OrdenDia.jsx
+    // Se deberia actualizar ese objeto mismo con un dispatch y en un estado central con context
     fetch(URL_CREATE, {
       method: 'POST',
       body: fData,
@@ -49,8 +53,10 @@ const ModalPotal = ({toggle, modal})=> {
       // }
     })
     .then(res => res.json())
-    .then(res => {
-      console.log(res);
+    .then(ordenes => {
+
+      console.log('res modal',ordenes);
+      dispatchOrdenes({type: 'SUBMIT_MODAL', payload: ordenes});
       toggle();
     })
     .catch(error => console.error('Error:', error))

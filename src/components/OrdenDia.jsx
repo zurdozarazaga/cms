@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext, useReducer } from 'react';
 
 import { Outlet } from 'react-router';
 
@@ -6,17 +6,25 @@ import DeleteBoton from './DeleteBoton';
 import VerBoton from './VerBoton.';
 
 import '../assets/styles//components/OrdenDia.scss';
+// import  useContext  from 'react';
 import Add from './Add';
 import Modal from '../modal/index';
+
+import {URL_GET_OD} from '../util/constants';
+import { OrdenDiaContext } from '../Context/ordenDiaContext';
+import {ordenDiaReducer, initialStateOrdenes} from '../reducers/ordenDiaReducer';
+
+
+
 
 
 
 
 
 const OrdenDia = () => {
-
-  const [ordenes, setOrdenes] = useState([]);
+  const [ordenes, dispatchOrdenes] = useContext(OrdenDiaContext);
   const [recuperado, setRecuperado] = useState(false);
+  console.log('ordenes',ordenes);
 
   
 
@@ -46,7 +54,7 @@ const OrdenDia = () => {
               </tr>
             </thead>
             <tbody>
-              {ordenes.map(ord => {
+              {ordenes.ordenes.map(ord => {
                 return (
                   <tr key={ord.id}>
                     <td>{ord.type}</td>
@@ -69,21 +77,23 @@ const OrdenDia = () => {
     );
   };
   useEffect(() => {
-    fetch('https://proyectogm.herokuapp.com/public/api/orders')
+    console.log('render effect Orden dia')
+    fetch(URL_GET_OD)
     .then((response) => {
       return response.json()
     })
     .then((ordenes) => {
-      setOrdenes(ordenes);
+      //cambiar useState por useReducer. mandar el objeto a un context y posterir al modal para que actualice ordenes
+      dispatchOrdenes({type: 'SET_ORDENES', payload: ordenes});  //cambiar useState por useReducer. mandar el objeto a un context y posterir al modal para que actualice ordenes;
       setRecuperado(true);
     })
     .catch(error => console.error(error));
-  }, []);
+  }, [dispatchOrdenes]);
   
 
   
+  
   if (recuperado)
-  // console.log(recuperado)
   return mostrarDatos()
   else
   return (<div>recuperando datos...</div>)

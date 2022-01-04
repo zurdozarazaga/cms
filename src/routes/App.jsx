@@ -20,6 +20,7 @@ import OrdenGuarnicion from '../components/OrdenGuarnicion';
 import Error404 from '../components/Error404';
 import PrivateRoute from './PrivateRoute';
 import { UserProvider } from '../Context/UserContext';
+import  {OrdenDiaProvider}  from '../Context/ordenDiaContext';
 
 
 const App = () => {
@@ -37,13 +38,15 @@ const App = () => {
             </UserProvider>
           } />
             <Route  path='OrdenDia' element={
+                  <OrdenDiaProvider>
               <PrivateRoute>
                 <div className='app'>
                   <Header />
-                  <OrdenDia />
+                    <OrdenDia />
                   <Navigation />
                 </div>
               </PrivateRoute>
+                  </OrdenDiaProvider>
             } />
             <Route  path='OrdenGuarnicion' element={
               <PrivateRoute>
