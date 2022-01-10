@@ -5,7 +5,7 @@ import Cookies from 'universal-cookie'
 
 const cookies = new Cookies();
 //recibe la data del onSubmit del formulario en Login
-const login = async (URL_LOGIN, data) => {
+const login = async (URL_LOGIN, data,) => {  
   try{
     const response = await fetch(URL_LOGIN, {
       method: 'POST',

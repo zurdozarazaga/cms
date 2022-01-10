@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext, useReducer } from 'react';
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 import { Outlet } from 'react-router';
 
@@ -13,6 +14,7 @@ import Modal from '../modal/index';
 import {URL_GET_OD} from '../util/constants';
 import { OrdenDiaContext } from '../Context/ordenDiaContext';
 import {ordenDiaReducer, initialStateOrdenes} from '../reducers/ordenDiaReducer';
+import { Plane } from 'react-loader-spinner';
 
 
 
@@ -33,15 +35,15 @@ const OrdenDia = () => {
     return (
       <>
         
-        <div className='container m-0 p-0' >
+        <div className='container  m-0 p-0' >
           <div className=' container--title_table d-flex m-0 p-0 justify-content-between '>
           <div className='  flex-row title-table  d-flex justify-content-center '>
             <h6 className='m-0 text-white'>ORDENES DEL DÍA</h6>
           </div>
             <Add />
           </div>
-          <table className="table table-dark table-striped table-hover table-wrapper-scroll">
-          <caption>Listado de ordenes</caption>
+          <table className="  table table-dark table-striped table-hover table-wrapper-scroll">
+          
           <thead>
               <tr>
                 <th scope="col">Tipo</th>
@@ -64,7 +66,6 @@ const OrdenDia = () => {
                     <td>{ord.about}</td>
                     <td>{ <VerBoton  ord= {ord.file_url} /> }</td>
                     <td>{ <DeleteBoton idOrden={ord.id} ord= {ord.file_url} /> }</td>
-                    
                   </tr>
                 );
               })}
@@ -96,7 +97,11 @@ const OrdenDia = () => {
   if (recuperado)
   return mostrarDatos()
   else
-  return (<div>recuperando datos...</div>)
+  return (
+    <div className="d-flex justify-content-around align-items-center" >
+      <Plane  color='grey' secondaryColor='black' arialLabel="loading-indicator" width={100} height={100} />
+    </div>
+  )
 
 };
 

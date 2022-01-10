@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../assets/styles/containers/Login.scss';
 
 import {  useNavigate  } from 'react-router-dom';
@@ -15,6 +15,7 @@ import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { URL_LOGIN } from '../util/constants';
 
 import login from '../services/login';
+import { Plane } from 'react-loader-spinner';
 
 
 
@@ -25,95 +26,123 @@ import login from '../services/login';
 const Login = () => {
   const { register, handleSubmit, formState: { errors, isSubmitting} } = useForm();
   const navigate = useNavigate ();
+  const [logued, setLogued] = useState({
+    isLogued: false,
+    loading: false,
+    error: false,
+  });
   
-  const onSubmit  =  async(data, e) => {
+  useEffect(() => {
+    if (logued.isLogued) {
+      navigate('/LayoutUser');
+    }    
+  }, [logued, navigate]);
+
+
+  const onSubmit  = (data, e) => {
+    setLogued({ ...logued, loading: true });
     e.target.reset();
-    //peticion Login 
-    await login(URL_LOGIN, data)
+    //peticion Login
+    const handleLogin = async () => {
+      await  login(URL_LOGIN, data)
+      setLogued({ ...logued, loading: false, isLogued: true });
+    } 
+    handleLogin();
     //redirecciona a LayoutUser
-    navigate('/LayoutUser');
+    // navigate('/LayoutUser');
   };
+  
   
   
   const [shown, setShown] = useState(false);
   const switchShown = () => setShown(!shown);
-  
+  console.log(logued);
+
   
 
   return (
-    <section className='login'>
-      <section className='login__container'>
-        <div className='login_container--title'>
-          <h2>Iniciar sesión</h2>
-        </div>
-        {/* en el onSumit se enviara al post  */}
-        <form className='login__container--form' onSubmit={handleSubmit(onSubmit)}>
-          <div>
-          <input 
-            className='input-user'
-            type='text'
-            placeholder='usuario'
-            name='nick'
-            //validacion de usuario en el caso de que no ingrese nada
-            {...register( 'nick', {
-              required: {
-                value: true,
-                message: 'Usuario obligatorio'
-              }
-            })}
-          />
-            {/* si el usuario no ingresa nada se muestra el error */}
-            <span className="text-danger text-small d-block mb-2">
-              {errors.nick &&  errors.nick.message}
-            </span>
+    <>
+    { logued.loading && 
+      <div className="d-flex justify-content-around align-items-center" >
+        <Plane  color='grey' secondaryColor='black' arialLabel="loading-indicator" width={100} height={100} />
+    </div>
+    }
+    { !logued.loading &&
+      <section className='login'>
+        <section className='login__container'>
+          <div className='login_container--title'>
+            <h2>Iniciar sesión</h2>
           </div>
-          <div>
-            <input
-              className='input-password'
-              type={shown ? 'text' : 'password'}
+          {/* en el onSumit se enviara al post  */}
+          <form className='login__container--form' onSubmit={handleSubmit(onSubmit)}>
+            <div>
+              <input
+                className='input-user'
+                type='text'
+                placeholder='usuario'
+                name='nick'
+                //validacion de usuario en el caso de que no ingrese nada
+                {...register('nick', {
+                  required: {
+                    value: true,
+                    message: 'Usuario obligatorio'
+                  }
+                })}
+              />
+              {/* si el usuario no ingresa nada se muestra el error */}
+              <span className="text-danger text-small d-block mb-2">
+                {errors.nick && errors.nick.message}
+              </span>
+            </div>
+            <div>
+              <input
+                className='input-password'
+                type={shown ? 'text' : 'password'}
                 placeholder='Contraseña'
                 name='pass'
                 //validacion de password en el caso de que no ingrese nada
-                {...register( 'pass', {
+                {...register('pass', {
                   required: {
                     value: true,
                     message: 'Contraseña obligatoria'
                   }
                 })}
-                >
-            </input>
-            <span 
-              onClick={switchShown}
-              type='button'
-            >
-              <FontAwesomeIcon icon={shown ? faEye : faEyeSlash} /> 
-            </span>
-          </div>
-            
-          {/* si el password no ingresa nada se muestra el error */}
-          <span className="text-danger text-small d-block mb-2">
-            {errors.pass &&  errors.pass.message}
-          </span>
+              >
+              </input>
+              <span
+                onClick={switchShown}
+                type='button'
+              >
+                <FontAwesomeIcon icon={shown ? faEye : faEyeSlash} />
+              </span>
+            </div>
 
-              <button
-                className='button'
-                type='submit'
-                //funcion de useForm
-                disabled={isSubmitting }
-                
-                >
-                Iniciar sesión 
-              </button>    
-          <div className='login__container--remember-me'>
-            <label>
-              <input type='checkbox' id='cbox1' defaultValue='first_checkbox' />
-              Recuérdame
-            </label>
-            <a href='/'>Olvidé mi contraseña</a>
-          </div>
-        </form>
+            {/* si el password no ingresa nada se muestra el error */}
+            <span className="text-danger text-small d-block mb-2">
+              {errors.pass && errors.pass.message}
+            </span>
+
+            <button
+              className='button'
+              type='submit'
+              //funcion de useForm
+              disabled={isSubmitting}
+
+            >
+              Iniciar sesión
+            </button>
+            <div className='login__container--remember-me'>
+              <label>
+                <input type='checkbox' id='cbox1' defaultValue='first_checkbox' />
+                Recuérdame
+              </label>
+              <a href='/'>Olvidé mi contraseña</a>
+            </div>
+          </form>
+        </section>
       </section>
-    </section>
+    }    
+  </>
   );
 
 };
