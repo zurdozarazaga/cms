@@ -42,7 +42,6 @@ const ModalPotal = ({toggle, modal})=> {
 
     console.log(fData.get('file'));
     console.log(fData);
-    // BUG: se crea el elemento pero nunca se actualiza el objeto ordenes en OrdenDia.jsx
     // Se deberia actualizar ese objeto mismo con un dispatch y en un estado central con context
     fetch(URL_CREATE, {
       method: 'POST',

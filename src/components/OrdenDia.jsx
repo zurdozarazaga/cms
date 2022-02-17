@@ -5,6 +5,7 @@ import { Outlet } from 'react-router';
 
 import DeleteBoton from './DeleteBoton';
 import VerBoton from './VerBoton.';
+import Checkbox from './Checkbox';
 
 import '../assets/styles//components/OrdenDia.scss';
 // import  useContext  from 'react';
@@ -15,15 +16,18 @@ import {URL_GET_OD} from '../util/constants';
 import { OrdenDiaContext } from '../Context/ordenDiaContext';
 import {ordenDiaReducer, initialStateOrdenes} from '../reducers/ordenDiaReducer';
 import { Plane } from 'react-loader-spinner';
+import Cookies from 'universal-cookie';
 
 
 
-
-
+const cookies = new Cookies();
 
 
 
 const OrdenDia = () => {
+  const token = cookies.get('role');
+  const idCookie = cookies.get('id');
+  const roleCookie = cookies.get('role');
   const [ordenes, dispatchOrdenes] = useContext(OrdenDiaContext);
   const [recuperado, setRecuperado] = useState(false);
   console.log('ordenes',ordenes);
@@ -32,50 +36,96 @@ const OrdenDia = () => {
 
   
   const mostrarDatos = () => {
-    return (
-      <>
-        
-        <div className='container  m-0 p-0' >
-          <div className=' container--title_table d-flex m-0 p-0 justify-content-between '>
-          <div className='  flex-row title-table  d-flex justify-content-center '>
-            <h6 className='m-0 text-white'>ORDENES DEL DÍA</h6>
-          </div>
-            <Add />
-          </div>
-          <table className="  table table-dark table-striped table-hover table-wrapper-scroll">
+    if(token === 'jefatura'){
+      return (
+        <>
           
-          <thead>
-              <tr>
-                <th scope="col">Tipo</th>
-                <th scope="col" >Nº</th>
-                <th scope="col" >Año</th>
-                <th scope="col" >Fecha</th>
-                <th scope="col" >Descripción</th>
-                <th scope="col" >Archivo</th>
-                <th scope="col" >Borrar</th>
-              </tr>
-            </thead>
-            <tbody>
-              {ordenes.ordenes.map(ord => {
-                return (
-                  <tr key={ord.id}>
-                    <td>{ord.type}</td>
-                    <td>{ord.number}</td>
-                    <td>{ord.year}</td>
-                    <td>{ord.date}</td>
-                    <td>{ord.about}</td>
-                    <td>{ <VerBoton  ord= {ord.file_url} /> }</td>
-                    <td>{ <DeleteBoton idOrden={ord.id} ord= {ord.file_url} /> }</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-          <Outlet />
-        </div>
-        <Modal />
-      </>
-    );
+          <div className='container  m-0 p-0' >
+            <div className=' container--title_table d-flex m-0 p-0 justify-content-between '>
+            <div className='  flex-row title-table  d-flex justify-content-center '>
+              <h6 className='m-0 text-white'>ORDENES DEL DÍA</h6>
+            </div>
+              <Add />
+            </div>
+            <table className="  table table-dark table-striped table-hover table-wrapper-scroll">
+            
+            <thead>
+                <tr>
+                  <th scope="col">Tipo</th>
+                  <th scope="col" >Nº</th>
+                  <th scope="col" >Año</th>
+                  <th scope="col" >Fecha</th>
+                  <th scope="col" >Descripción</th>
+                  <th scope="col" >Archivo</th>
+                  <th scope="col" >Borrar</th>
+                </tr>
+              </thead>
+              <tbody>
+                {ordenes.ordenes.map(ord => {
+                  return (
+                    <tr key={ord.id}>
+                      <td>{ord.type}</td>
+                      <td>{ord.number}</td>
+                      <td>{ord.year}</td>
+                      <td>{ord.date}</td>
+                      <td>{ord.about}</td>
+                      <td>{ <VerBoton  ord= {ord.file_url} /> }</td>
+                      <td>{ <DeleteBoton idOrden={ord.id} ord= {ord.file_url} /> }</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+            <Outlet />
+          </div>
+          <Modal />
+        </>
+      );
+    }else{
+      return (
+        <>
+          
+          <div className='container  m-0 p-0' >
+            <div className=' container--title_table d-flex m-0 p-0 justify-content-between '>
+            <div className='  flex-row title-table  d-flex justify-content-center '>
+              <h6 className='m-0 text-white'>ORDENES DEL DÍA</h6>
+            </div>
+            </div>
+            <table className="  table table-dark table-striped table-hover table-wrapper-scroll">
+            
+            <thead>
+                <tr>
+                  <th scope="col">Tipo</th>
+                  <th scope="col" >Nº</th>
+                  <th scope="col" >Año</th>
+                  <th scope="col" >Fecha</th>
+                  <th scope="col" >Descripción</th>
+                  <th scope="col" >Archivo</th>
+                  <th scope="col" >Borrar</th>
+                </tr>
+              </thead>
+              <tbody>
+                {ordenes.ordenes.map(ord => {
+                  return (
+                    <tr key={ord.id}>
+                      <td>{ord.type}</td>
+                      <td>{ord.number}</td>
+                      <td>{ord.year}</td>
+                      <td>{ord.date}</td>
+                      <td>{ord.about}</td>
+                      <td>{ <VerBoton  ord= {ord.file_url} /> }</td>
+                      <td>{ <Checkbox idCheck={ord.id} /> }</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+            <Outlet />
+          </div>
+          <Modal />
+        </>
+      );
+    }
   };
   useEffect(() => {
     console.log('render effect Orden dia')

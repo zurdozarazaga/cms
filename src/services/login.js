@@ -9,7 +9,6 @@ const login = async (URL_LOGIN, data,) => {
   try{
     const response = await fetch(URL_LOGIN, {
       method: 'POST',
-      
       body: JSON.stringify(data),
       // body: data,
       headers: {

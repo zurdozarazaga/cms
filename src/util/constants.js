@@ -5,3 +5,4 @@ export const URL_GET_OG = baseURL + 'api/orders/index/od';
 export const URL_GET_OR = baseURL + 'api/orders/index/or';
 export const URL_DELETE = baseURL + 'api/orders/delete';
 export const URL_CREATE = baseURL + 'api/orders/create';
+export const URL_CHECKBOX = baseURL + 'api/orderviews/create';
