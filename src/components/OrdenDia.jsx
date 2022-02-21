@@ -127,9 +127,19 @@ const OrdenDia = () => {
       );
     }
   };
+
+  
+
   useEffect(() => {
+    const options = {
+      method: 'GET',
+      mode: 'cors',
+      samesite: 'None',
+      credentials: 'include',
+      cache: 'no-cache'
+    };
     console.log('render effect Orden dia')
-    fetch(URL_GET_OD)
+    fetch(URL_GET_OD,options)
     .then((response) => {
       return response.json()
     })

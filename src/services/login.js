@@ -9,8 +9,10 @@ const login = async (URL_LOGIN, data,) => {
   try{
     const response = await fetch(URL_LOGIN, {
       method: 'POST',
+      mode: 'cors',
+      samesite: 'None',
+      credentials: 'include',
       body: JSON.stringify(data),
-      // body: data,
       headers: {
         // 'Content-Type': 'application/json',
         // 'mode' : 'no-cors'

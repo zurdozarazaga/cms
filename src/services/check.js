@@ -18,7 +18,7 @@ const checkOrder = async (data) => {
     });
     //respuesta
     debugger;
-    const resp = await response.json();
+        const resp = await response.json();
     console.log(resp);
     if(response.status === 200){
       console.log('status 200');
